@@ -26,8 +26,10 @@ public class MixinConfigPlugin implements IMixinConfigPlugin {
         boolean krypton = FMLLoader.getLoadingModList().getModFileById("krypton") != null || FMLLoader.getLoadingModList().getModFileById("pluto") != null;
 
         if (mixinClassName.equalsIgnoreCase("net.tonimatasdev.packetfixerforge.mixin.SplitterHandlerMixin") || mixinClassName.equalsIgnoreCase("net.tonimatasdev.packetfixerforge.mixin.SizePrependerMixin")) {
-            LogUtils.getLogger().warn("For can't fit X into 3 error fix. Delete Krypton or Pluto.");
-            return !krypton;
+            if (krypton) {
+                LogUtils.getLogger().warn("For can't fit X into 3 error fix. Delete Krypton or Pluto.");
+                return false;
+            }
         }
 
         return true;
