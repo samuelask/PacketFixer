@@ -28,7 +28,7 @@ public class MixinConfigPlugin implements IMixinConfigPlugin {
 
         if (mixinClassName.equalsIgnoreCase("dev.tonimatas.packetfixer.mixins.CompressionDecoderMixin")) return !connectivity;
         if (mixinClassName.equalsIgnoreCase("dev.tonimatas.packetfixer.mixins.compat.connectivity.CompressionDecoderMixin")) return connectivity;
-        if (mixinClassName.equalsIgnoreCase("dev.tonimatas.packetfixer.mixins.SplitterHandlerMixin") || mixinClassName.equalsIgnoreCase("net.tonimatasdev.packetfixer.mixins.SizePrependerMixin")) {
+        if (mixinClassName.equalsIgnoreCase("dev.tonimatas.packetfixer.mixins.SplitterHandlerMixin") || mixinClassName.equalsIgnoreCase("dev.tonimatas.packetfixer.mixins.SizePrependerMixin")) {
             if (krypton) {
                 LogUtils.getLogger().warn("For can't fit X into 3 error fix. Delete Krypton or Pluto.");
                 return false;
