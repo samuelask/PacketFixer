@@ -23,8 +23,15 @@ public class MixinConfigPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
+        boolean connectivity = Hooks.isModLoaded("connectivity");
         boolean krypton = Hooks.isModLoaded("krypton") || Hooks.isModLoaded("pluto");
 
+        if (mixinClassName.equalsIgnoreCase("dev.tonimatas.packetfixer.CompressionDecoderMixin")) {
+            if (connectivity) {
+                LogUtils.getLogger().warn("You are using connectivity for fix \"Badly compressed packet - size of \" + X + \" is larger than protocol maximum of 8388608\" if you have and issue with that delete connectivity.");
+                return false;
+            }
+        }
         if (mixinClassName.equalsIgnoreCase("dev.tonimatas.packetfixer.mixins.SplitterHandlerMixin") || mixinClassName.equalsIgnoreCase("dev.tonimatas.packetfixer.mixins.SizePrependerMixin")) {
             if (krypton) {
                 LogUtils.getLogger().warn("For can't fit X into 3 error fix. Delete Krypton or Pluto.");
