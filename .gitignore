@@ -9,8 +9,11 @@
 /fabric/build/
 /forge/build/
 /common/build/
+/neoforge/build/
 /fabric/.gradle/
 /forge/.gradle/
 /common/.gradle/
+/neoforge/.gradle
 /fabric/run/
 /forge/run/
+/neoforge/run/
