@@ -32,12 +32,7 @@ public class MixinConfigPlugin implements IMixinConfigPlugin {
                 return false;
             }
         }
-        if (mixinClassName.equalsIgnoreCase("dev.tonimatas.packetfixer.mixins.SplitterHandlerMixin") || mixinClassName.equalsIgnoreCase("dev.tonimatas.packetfixer.mixins.SizePrependerMixin")) {
-            if (krypton) {
-                LogUtils.getLogger().warn("For can't fit X into 3 error fix. Delete Krypton or Pluto.");
-                return false;
-            }
-        }
+        if (mixinClassName.equalsIgnoreCase("dev.tonimatas.packetfixer.mixins.SplitterHandlerMixin") || mixinClassName.equalsIgnoreCase("dev.tonimatas.packetfixer.mixins.SizePrependerMixin")) return !krypton;
 
         return true;
     }
