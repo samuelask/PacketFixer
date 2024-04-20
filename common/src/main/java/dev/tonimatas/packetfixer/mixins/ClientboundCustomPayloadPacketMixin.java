@@ -7,8 +7,8 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
 @Mixin(value = ClientboundCustomPayloadPacket.class, priority = 9999)
 public class ClientboundCustomPayloadPacketMixin {
-    @ModifyConstant(method = "<init>*", constant = @Constant(intValue = 1048576))
-    private static int newSize(int value) {
+    @ModifyConstant(method = {"<init>(Lnet/minecraft/network/FriendlyByteBuf;)V", "<init>(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/network/FriendlyByteBuf;)V"}, constant = @Constant(intValue = 1048576))
+    private int newSize(int value) {
         return Integer.MAX_VALUE;
     }
 }
