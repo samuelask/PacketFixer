@@ -7,7 +7,3 @@ dependencies {
 architectury {
     common("fabric", "forge", "neoforge")
 }
-
-loom {
-    accessWidenerPath.set(file("src/main/resources/cerium.accesswidener"))
-}

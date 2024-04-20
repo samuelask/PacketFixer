@@ -10,8 +10,8 @@ plugins {
 
 val modVersion: String by extra
 val minecraftVersion: String by extra
+val minecraftVersionRange: String by extra
 val forgeVersion: String by extra
-val forgeVersionRange: String by extra
 
 architectury {
     platformSetupLoomIde()
@@ -19,7 +19,6 @@ architectury {
 }
 
 loom {
-    accessWidenerPath.set(project(":common").loom.accessWidenerPath)
     forge {
         mixinConfig("packetfixer-common.mixins.json")
         mixinConfig("packetfixer-forge.mixins.json")
@@ -41,7 +40,7 @@ dependencies {
 }
 
 tasks.withType<ProcessResources> {
-    val replaceProperties = mapOf("minecraftVersion" to minecraftVersion, "forgeVersionRange" to forgeVersionRange, "modVersion" to modVersion)
+    val replaceProperties = mapOf("modVersion" to modVersion, "minecraftVersionRange" to minecraftVersionRange)
     inputs.properties(replaceProperties)
 
     filesMatching("META-INF/mods.toml") {
