@@ -26,7 +26,7 @@ public class MixinConfigPlugin implements IMixinConfigPlugin {
         boolean connectivity = Hooks.isModLoaded("connectivity");
         boolean krypton = Hooks.isModLoaded("krypton") || Hooks.isModLoaded("pluto");
 
-        if (mixinClassName.equalsIgnoreCase("dev.tonimatas.packetfixer.CompressionDecoderMixin")) {
+        if (mixinClassName.equalsIgnoreCase("dev.tonimatas.packetfixer.mixins.CompressionDecoderMixin")) {
             if (connectivity) {
                 LogUtils.getLogger().warn("You are using connectivity for fix \"Badly compressed packet - size of \" + X + \" is larger than protocol maximum of 8388608\" if you have and issue with that delete connectivity.");
                 return false;
