@@ -45,7 +45,15 @@ allprojects {
         options.encoding = "UTF-8"
     }
 
+    tasks.withType<JavaCompile> {
+        options.encoding = "UTF-8"
+    }
+
     java {
         withSourcesJar()
+        toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
