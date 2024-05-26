@@ -11,9 +11,7 @@
     "FriendlyByteBufMixin",
     "PacketEncoderMixin",
     "ServerboundCustomPayloadPacketMixin",
-    "ServerboundCustomQueryPacketMixin",
-    "SizePrependerMixin",
-    "SplitterHandlerMixin"
+    "ServerboundCustomQueryPacketMixin"
   ],
   "client": [
   ],
