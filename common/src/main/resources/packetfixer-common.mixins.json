@@ -12,6 +12,8 @@
     "PacketEncoderMixin",
     "ServerboundCustomPayloadPacketMixin",
     "ServerboundCustomQueryPacketMixin",
+    "Varint21FrameDecoderMixin",
+    "Varint21LengthFieldPrependerMixin",
     "compat.connectivity.CompressionDecoderMixin"
   ],
   "client": [
