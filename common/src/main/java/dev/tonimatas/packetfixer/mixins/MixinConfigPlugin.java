@@ -3,6 +3,7 @@ package dev.tonimatas.packetfixer.mixins;
 import com.mojang.logging.LogUtils;
 import dev.tonimatas.packetfixer.util.Config;
 import dev.tonimatas.packetfixer.util.Hooks;
+import dev.tonimatas.packetfixer.util.MixinCheck;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -22,18 +23,19 @@ public class MixinConfigPlugin implements IMixinConfigPlugin {
         return null;
     }
 
+    @SuppressWarnings("UnreachableCode")
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         boolean connectivity = Hooks.isModLoaded("connectivity");
         boolean krypton = Hooks.isModLoaded("krypton") || Hooks.isModLoaded("pluto");
 
-        if (mixinClassName.equalsIgnoreCase("dev.tonimatas.packetfixer.mixins.CompressionDecoderMixin")) {
+        if (MixinCheck.with(mixinClassName, "CompressionDecoderMixin")) {
             if (connectivity) {
                 LogUtils.getLogger().warn("You are using connectivity for fix \"Badly compressed packet - size of \" + X + \" is larger than protocol maximum of 8388608\" if you have and issue with that delete connectivity.");
                 return false;
             }
         }
-        if (mixinClassName.equalsIgnoreCase("dev.tonimatas.packetfixer.mixins.SplitterHandlerMixin") || mixinClassName.equalsIgnoreCase("dev.tonimatas.packetfixer.mixins.SizePrependerMixin")) return !krypton;
+        if (MixinCheck.with(mixinClassName, "Varint21FrameDecoderMixin") || MixinCheck.with(mixinClassName, "Varint21LengthFieldPrependerMixin")) return !krypton;
 
         return true;
     }
