@@ -27,12 +27,13 @@ public class MixinConfigPlugin implements IMixinConfigPlugin {
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         boolean connectivity = Hooks.isModLoaded("connectivity");
         boolean krypton = Hooks.isModLoaded("krypton") || Hooks.isModLoaded("pluto");
+        boolean immersivePortals = Hooks.isModLoaded("immersive_portals");
 
         if (MixinCheck.with(mixinClassName, "CompressionDecoderMixin")) return !connectivity;
         if (MixinCheck.with(mixinClassName, "compat.connectivity.CompressionDecoderMixin")) return connectivity;
         if (MixinCheck.with(mixinClassName, "Varint21FrameDecoderMixin") || 
                 MixinCheck.with(mixinClassName, "Varint21LengthFieldPrependerMixin")) return !krypton;
-
+        if (MixinCheck.with(mixinClassName, "ClientboundCustomPayloadPacketMixin")) return !immersivePortals;
         return true;
     }
 
