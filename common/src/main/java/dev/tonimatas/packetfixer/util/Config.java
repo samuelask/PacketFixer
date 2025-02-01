@@ -26,6 +26,7 @@ public class Config {
                 properties.setProperty("nbtMaxSize", Long.toString(2097152 * 100));
                 properties.setProperty("packetSize", Integer.toString(1048576 * 100));
                 properties.setProperty("decoderSize", Integer.toString(8388608 * 100));
+                properties.setProperty("stringSize", Integer.toString(32767 * 100));
                 properties.setProperty("varInt21", Integer.toString(8));
 
                 save(propertiesFile);
@@ -36,6 +37,7 @@ public class Config {
             checkVariable("nbtMaxSize", Long.toString(2097152 * 100));
             checkVariable("packetSize", Integer.toString(1048576 * 100));
             checkVariable("decoderSize", Integer.toString(8388608 * 100));
+            checkVariable("stringSize", Integer.toString(32767 * 100));
             checkVariable("varInt21", Integer.toString(8));
             save(propertiesFile);
         } catch (IOException e) {
@@ -63,6 +65,11 @@ public class Config {
         return Integer.parseInt(properties.getProperty("varInt21"));
     }
 
+    public static int getStringSize() {
+        if (properties == null) runProperties();
+        return Integer.parseInt(properties.getProperty("stringSize"));
+    }
+
     private static void checkVariable(String variable, String defaultValue) {
         if (properties.getProperty(variable) == null) {
             properties.setProperty(variable, defaultValue);
@@ -73,6 +80,6 @@ public class Config {
         properties.store(Files.newOutputStream(propertiesFile.toPath()),
                 "Packet Fixer config file.\n" +
                         "Default values (minecraft default): nbtMaxSize 2097152, packetSize 1048576, decoderSize 2097152 and varInt21Size 3.\n" +
-                        "Max values are " + Integer.MAX_VALUE + " for packetSize/decoderSize/varInt21 and " + Long.MAX_VALUE + " for nbtMaxSize.");
+                        "Max values are " + Integer.MAX_VALUE + " for packetSize/decoderSize/varInt21/stringSize and " + Long.MAX_VALUE + " for nbtMaxSize.");
     }
 }

@@ -12,4 +12,19 @@ public abstract class FriendlyByteBufMixin {
     public long newSize(long value) {
         return Config.getNbtMaxSize();
     }
+    
+    @ModifyConstant(method = "readUtf()Ljava/lang/String;", constant = @Constant(intValue = 32767))
+    public int newSize(int value) {
+        return Config.getStringSize();
+    }
+
+    @ModifyConstant(method = "writeUtf(Ljava/lang/String;)Lnet/minecraft/network/FriendlyByteBuf;", constant = @Constant(intValue = 32767))
+    public int newSize$1(int value) {
+        return Config.getStringSize();
+    }
+
+    @ModifyConstant(method = "readResourceLocation", constant = @Constant(intValue = 32767))
+    public int newSize$2(int value) {
+        return Config.getStringSize();
+    }
 }
