@@ -26,7 +26,6 @@ public class Config {
                 properties.setProperty("nbtMaxSize", Long.toString(2097152 * 100));
                 properties.setProperty("packetSize", Integer.toString(1048576 * 100));
                 properties.setProperty("decoderSize", Integer.toString(8388608 * 100));
-                properties.setProperty("varInt21", Integer.toString(8));
                 properties.setProperty("utfSize", Integer.toString(32767));
                 
                 save(propertiesFile);
@@ -37,7 +36,6 @@ public class Config {
             checkVariable("nbtMaxSize", Long.toString(2097152 * 100));
             checkVariable("packetSize", Integer.toString(1048576 * 100));
             checkVariable("decoderSize", Integer.toString(8388608 * 100));
-            checkVariable("varInt21", Integer.toString(8));
             checkVariable("utfSize", Integer.toString(32767 * 100));
             save(propertiesFile);
         } catch (IOException e) {
@@ -58,11 +56,6 @@ public class Config {
     public static int getDecoderSize() {
         if (properties == null) runProperties();
         return Integer.parseInt(properties.getProperty("decoderSize"));
-    }
-
-    public static int getVarInt21Size() {
-        if (properties == null) runProperties();
-        return Integer.parseInt(properties.getProperty("varInt21"));
     }
     
     public static int getUtf8Size() {

@@ -20,7 +20,7 @@ architectury {
 
 loom {
     forge {
-        mixinConfig("packetfixer-common.mixins.json", "packetfixer-forge.mixins.json")
+        mixinConfig("packetfixer.common.mixins.json", "packetfixer.forge.mixins.json")
     }
 }
 
