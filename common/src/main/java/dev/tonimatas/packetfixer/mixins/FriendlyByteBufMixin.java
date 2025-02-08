@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
 @Mixin(FriendlyByteBuf.class)
 public abstract class FriendlyByteBufMixin {
-    @ModifyConstant(method = "readNbt()Lnet/minecraft/nbt/CompoundTag;", constant = @Constant(longValue = 2097152L), require = 0)
+    @ModifyConstant(method = "readNbt()Lnet/minecraft/nbt/CompoundTag;", constant = @Constant(longValue = 2097152L))
     public long newSize(long constant) {
         return Config.getNbtMaxSize();
     }
@@ -20,7 +20,7 @@ public abstract class FriendlyByteBufMixin {
     
     @ModifyConstant(method = "writeUtf(Ljava/lang/String;)Lnet/minecraft/network/FriendlyByteBuf;", constant = @Constant(intValue = 32767))
     private int writeUtf$newSize(int constant) {
-        return Config.getUtf8Size(); // It should work. The error is correct, with the Packet Fixer values. You can change the max in the config.
+        return Config.getUtf8Size();
     }
     
     @ModifyConstant(method = "readResourceLocation", constant = @Constant(intValue = 32767))
