@@ -7,15 +7,19 @@
   "mixins": [
     "ClientboundCustomPayloadPacketMixin",
     "ClientboundCustomQueryPacketMixin",
+    "ClientboundLevelChunkPacketDataMixin",
     "CompressionDecoderMixin",
     "CompressionEncoderMixin",
+    "ConnectionMixin",
     "FriendlyByteBufMixin",
     "ServerboundCustomPayloadPacketMixin",
     "ServerboundCustomQueryPacketMixin",
     "Varint21FrameDecoderMixin",
-    "Varint21LengthFieldPrependerMixin"
+    "Varint21LengthFieldPrependerMixin",
+    "VarIntMixin",
+    "VarLongMixin"
   ],
   "injectors": {
-    "defaultRequire": 1
+    "defaultRequire": 0
   }
 }
