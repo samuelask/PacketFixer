@@ -7,11 +7,15 @@
   "mixins": [
     "ClientboundCustomPayloadPacketMixin",
     "ClientboundCustomQueryPacketMixin",
+    "ClientboundLevelChunkPacketDataMixin",
     "CompressionDecoderMixin",
+    "ConnectionMixin",
     "FriendlyByteBufMixin",
     "PacketEncoderMixin",
     "ServerboundCustomPayloadPacketMixin",
-    "ServerboundCustomQueryPacketMixin"
+    "ServerboundCustomQueryPacketMixin",
+    "Varint21FrameDecoderMixin",
+    "Varint21LengthFieldPrependerMixin"
   ],
   "client": [
   ],
