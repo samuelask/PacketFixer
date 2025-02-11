@@ -13,7 +13,7 @@ public class ServerboundCustomQueryPacketMixin {
     private static int newSize(int value) {
         return Config.getPacketSize();
     }
-    
+
     @ModifyConstant(method = "readUnknownPayload", constant = @Constant(stringValue = "Payload may not be larger than 1048576 bytes"))
     private static String newSize(String value) {
         return PacketFixer.getPayloadMessage();

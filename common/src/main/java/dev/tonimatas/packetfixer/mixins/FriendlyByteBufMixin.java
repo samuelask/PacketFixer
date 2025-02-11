@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 @Mixin(FriendlyByteBuf.class)
 public abstract class FriendlyByteBufMixin {
     @ModifyConstant(method = "readNbt()Lnet/minecraft/nbt/CompoundTag;", constant = @Constant(longValue = 2097152L))
-    public long newSize(long value) {
+    private long newSize(long value) {
         return Config.getNbtMaxSize();
     }
 }
