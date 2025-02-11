@@ -1,8 +1,6 @@
 package dev.tonimatas.packetfixer.mixins;
 
 import dev.tonimatas.packetfixer.util.Config;
-import dev.tonimatas.packetfixer.util.Hooks;
-import dev.tonimatas.packetfixer.util.MixinCheck;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -25,18 +23,6 @@ public class MixinConfigPlugin implements IMixinConfigPlugin {
     @SuppressWarnings("UnreachableCode")
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        boolean connectivity = Hooks.isModLoaded("connectivity");
-        boolean krypton = Hooks.isModLoaded("krypton") || Hooks.isModLoaded("pluto");
-        boolean immersivePortals = Hooks.isModLoaded("immersive_portals");
-        boolean theVault = Hooks.isModLoaded("the_vault");
-
-        if (MixinCheck.with(mixinClassName, "CompressionDecoderMixin")) return !connectivity;
-        if (MixinCheck.with(mixinClassName, "compat.connectivity.CompressionDecoderMixin")) return connectivity;
-        if (MixinCheck.with(mixinClassName, "Varint21FrameDecoderMixin") || MixinCheck.with(mixinClassName, "Varint21LengthFieldPrependerMixin")) return !krypton;
-        if (MixinCheck.with(mixinClassName, "ClientboundCustomPayloadPacketMixin")) return (!immersivePortals && !theVault);
-        if (MixinCheck.with(mixinClassName, "ServerboundCustomPayloadPacketMixin")) return !theVault;
-        if (MixinCheck.with(mixinClassName, "ClientboundCustomQueryPacketMixin")) return !theVault;
-        if (MixinCheck.with(mixinClassName, "ServerboundCustomQueryPacketMixin")) return !theVault;
         return true;
     }
 

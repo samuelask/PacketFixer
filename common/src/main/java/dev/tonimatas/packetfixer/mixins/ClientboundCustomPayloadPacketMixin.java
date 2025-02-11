@@ -7,14 +7,14 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
-@Mixin(value = ClientboundCustomPayloadPacket.class, priority = 9999)
+@Mixin(ClientboundCustomPayloadPacket.class)
 public class ClientboundCustomPayloadPacketMixin {
-    @ModifyConstant(method = {"<init>(Lnet/minecraft/network/FriendlyByteBuf;)V", "<init>(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/network/FriendlyByteBuf;)V"}, constant = @Constant(intValue = 1048576))
+    @ModifyConstant(method = {"<init>(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/network/FriendlyByteBuf;)V", "<init>(Lnet/minecraft/network/FriendlyByteBuf;)V"}, constant = @Constant(intValue = 1048576))
     private int newSize(int value) {
         return Config.getPacketSize();
     }
 
-    @ModifyConstant(method = {"<init>(Lnet/minecraft/network/FriendlyByteBuf;)V", "<init>(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/network/FriendlyByteBuf;)V"}, constant = @Constant(stringValue = "Payload may not be larger than 1048576 bytes"))
+    @ModifyConstant(method = {"<init>(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/network/FriendlyByteBuf;)V", "<init>(Lnet/minecraft/network/FriendlyByteBuf;)V"}, constant = @Constant(stringValue = "Payload may not be larger than 1048576 bytes"))
     private String newSize(String value) {
         return PacketFixer.getPayloadMessage();
     }
