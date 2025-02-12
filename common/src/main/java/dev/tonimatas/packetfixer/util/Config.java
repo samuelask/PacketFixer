@@ -30,6 +30,7 @@ public class Config {
                 properties.setProperty("varInt21", Integer.toString(3));
                 properties.setProperty("varInt", Integer.toString(5));
                 properties.setProperty("varLong", Integer.toString(10));
+                properties.setProperty("stringSize", Integer.toString(32767));
                 checkVariable("chunkPacketData", Integer.toString(2097152));
                 properties.setProperty("timeout", Integer.toString(90));
 
@@ -45,6 +46,7 @@ public class Config {
             checkVariable("varInt21", Integer.toString(3));
             checkVariable("varInt", Integer.toString(5));
             checkVariable("varLong", Integer.toString(10));
+            checkVariable("stringSize", Integer.toString(32767));
             checkVariable("chunkPacketData", Integer.toString(2097152));
             checkVariable("timeout", Integer.toString(90));
             save(propertiesFile);
@@ -86,6 +88,11 @@ public class Config {
     public static int getVarLong() {
         if (properties == null) runProperties();
         return getUnlimitedPacketSize() ? (Integer.MAX_VALUE / 2 - 1) : Integer.parseInt(properties.getProperty("varLong"));
+    }
+    
+    public static int getStringSize() {
+        if (properties == null) runProperties();
+        return getUnlimitedPacketSize() ? Integer.MAX_VALUE : Integer.parseInt(properties.getProperty("stringSize"));
     }
     
     public static int getChunkPacketData() {

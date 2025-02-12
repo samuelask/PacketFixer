@@ -32,4 +32,14 @@ public abstract class FriendlyByteBufMixin {
     private String readLong$size(String constant) {
         return "VarInt too big. Packet Fixer configured to " + Config.getVarLong() + ". You can modify it in the Packet Fixer config.";
     }
+
+    @ModifyConstant(method = "readUtf()Ljava/lang/String;", constant = @Constant(intValue = 32767))
+    private int readUtf$size(int value) {
+        return Config.getStringSize();
+    }
+
+    @ModifyConstant(method = "writeUtf(Ljava/lang/String;)Lnet/minecraft/network/FriendlyByteBuf;", constant = @Constant(intValue = 32767))
+    private int writeUtf$size(int value) {
+        return Config.getStringSize();
+    }
 }
