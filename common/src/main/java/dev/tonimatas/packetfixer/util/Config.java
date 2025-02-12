@@ -75,7 +75,7 @@ public class Config {
 
     public static int getVarInt21Size() {
         if (properties == null) runProperties();
-        return getUnlimitedPacketSize() ? (Integer.MAX_VALUE / 2 - 1) : Integer.parseInt(properties.getProperty("varInt21"));
+        return getUnlimitedPacketSize() ? Integer.MAX_VALUE : Integer.parseInt(properties.getProperty("varInt21"));
     }
 
     public static int getVarIntSize() {
