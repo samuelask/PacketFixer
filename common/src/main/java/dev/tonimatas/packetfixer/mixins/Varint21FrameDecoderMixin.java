@@ -1,6 +1,5 @@
 package dev.tonimatas.packetfixer.mixins;
 
-import com.mojang.logging.LogUtils;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import net.minecraft.network.FriendlyByteBuf;
@@ -27,7 +26,6 @@ public abstract class Varint21FrameDecoderMixin {
     
     @ModifyConstant(method = "decode", constant = @Constant(intValue = 3))
     private int newSize(int constant) {
-        LogUtils.getLogger().info(packetFixer$varInt21Size + " new value");
         return packetFixer$varInt21Size;
     }
 }
