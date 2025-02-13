@@ -21,7 +21,7 @@ public abstract class Varint21FrameDecoderMixin {
     
     @Inject(method = "decode", at = @At("HEAD"))
     private void decode(ChannelHandlerContext channelHandlerContext, ByteBuf byteBuf, List<Object> list, CallbackInfo ci) {
-        packetFixer$varInt21Size = FriendlyByteBuf.getVarIntSize(byteBuf.readableBytes()) + 1;
+        packetFixer$varInt21Size = FriendlyByteBuf.getVarIntSize(byteBuf.readableBytes()) + 2;
     }
     
     @ModifyConstant(method = "decode", constant = @Constant(intValue = 3))
