@@ -5,7 +5,7 @@ import net.fabricmc.loom.task.RemapJarTask
 import org.gradle.api.component.AdhocComponentWithVariants
 
 plugins {
-    id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("com.github.johnrengelman.shadow")
 }
 
 architectury {
@@ -28,6 +28,8 @@ configurations["developmentFabric"].extendsFrom(common)
 dependencies {
     modImplementation("net.fabricmc:fabric-loader:$fabricLoaderVersion")
 
+    modApi("net.fabricmc.fabric-api:fabric-api:0.97.2+1.20.4")
+    
     common(project(path = ":common", configuration = "namedElements")) { isTransitive = false }
     shadowCommon(project(path = ":common", configuration = "transformProductionFabric")) { isTransitive = false }
 }

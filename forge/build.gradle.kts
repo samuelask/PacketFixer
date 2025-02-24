@@ -5,7 +5,7 @@ import net.fabricmc.loom.task.RemapJarTask
 import org.gradle.api.component.AdhocComponentWithVariants
 
 plugins {
-    id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("com.github.johnrengelman.shadow")
 }
 
 val modVersion: String by extra
